@@ -1,0 +1,2 @@
+# Deployment dependencies for markitdown-ui (Streamlit Cloud reads this by default).
+-r packages/markitdown-ui/requirements.txt
