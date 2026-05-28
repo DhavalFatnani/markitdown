@@ -1,2 +1,3 @@
 streamlit>=1.40.0
 markitdown[all] @ file:packages/markitdown
+markitdown-ui @ file:packages/markitdown-ui

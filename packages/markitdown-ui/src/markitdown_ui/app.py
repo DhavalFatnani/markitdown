@@ -4,14 +4,27 @@
 
 from __future__ import annotations
 
+import importlib.util
 import io
 import os
+from pathlib import Path
 from typing import Optional
 
 import streamlit as st
 from markitdown import MarkItDown, MarkItDownException, StreamInfo
 
-from markitdown_ui.__about__ import __version__
+
+def _load_version() -> str:
+    about_path = Path(__file__).resolve().parent / "__about__.py"
+    spec = importlib.util.spec_from_file_location("markitdown_ui_about", about_path)
+    if spec is None or spec.loader is None:
+        return "0.0.0"
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return str(module.__version__)
+
+
+__version__ = _load_version()
 
 
 @st.cache_resource
